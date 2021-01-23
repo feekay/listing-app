@@ -1,0 +1,90 @@
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'androidx.navigation.safeargs.kotlin'
+    id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
+}
+
+android {
+    compileSdkVersion 29
+    buildToolsVersion "29.0.3"
+
+    buildFeatures {
+        dataBinding true
+    }
+
+    defaultConfig {
+        applicationId "com.lemonade.listingapp"
+        minSdkVersion 21
+        targetSdkVersion 29
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        debug {
+            buildConfigField "String", "BASE_URL", "\"https://ey3f2y0nre.execute-api.us-east-1.amazonaws.com/\""
+            minifyEnabled false
+        }
+        release {
+            buildConfigField "String", "BASE_URL", "\"https://ey3f2y0nre.execute-api.us-east-1.amazonaws.com/\""
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8.toString()
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: "libs", include: ["*.jar"])
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    implementation "androidx.core:core-ktx:$ktx_android"
+    implementation "androidx.appcompat:appcompat:$androidx_appcompat"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$ktx_coroutines"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$ktx_coroutines"
+    implementation "androidx.constraintlayout:constraintlayout:$androidx_constraintlayout"
+    implementation "androidx.lifecycle:lifecycle-extensions:$arch_lifecycle_extensions"
+    implementation "android.arch.lifecycle:runtime:$arch_lifecycle_runtime"
+    implementation "androidx.recyclerview:recyclerview:$androidx_recyclerview"
+    implementation "com.google.android.material:material:$androidx_material"
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation 'androidx.cardview:cardview:1.0.0'
+    kapt "com.android.databinding:compiler:$databinding"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$ktx_arch_lifecycle"
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:$ktx_arch_lifecycle"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$ktx_arch_lifecycle"
+    implementation "androidx.navigation:navigation-fragment-ktx:$arch_navigation_version"
+    implementation "androidx.navigation:navigation-ui-ktx:$arch_navigation_version"
+    implementation "androidx.navigation:navigation-runtime-ktx:$arch_navigation_version"
+    implementation "com.google.dagger:hilt-android:$hilt_version"
+    kapt "com.google.dagger:hilt-android-compiler:$hilt_version"
+    implementation "androidx.hilt:hilt-lifecycle-viewmodel:$hilt_arch_viemodel"
+    kapt "androidx.hilt:hilt-compiler:$hilt_compiler"
+    implementation "com.squareup.retrofit2:retrofit:$retrofit"
+    implementation "com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:$retrofit_ktx"
+    implementation "com.squareup.okhttp3:logging-interceptor:$retrofit_logging"
+    implementation "com.squareup.retrofit2:converter-moshi:$retrofit_moshi"
+    implementation "com.squareup.moshi:moshi-kotlin:$moshi"
+    implementation "com.squareup.moshi:moshi-adapters:$moshi"
+    implementation "com.squareup.picasso:picasso:$picasso"
+
+    testImplementation "junit:junit:$junit"
+    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$ktx_test"
+    testImplementation "androidx.test:core:$test_core"
+    testImplementation "org.mockito:mockito-core:$mockito"
+    testImplementation "androidx.arch.core:core-testing:$arch_testing_core"
+    androidTestImplementation "androidx.test.ext:junit:$junit_ext"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$espresso"
+
+}

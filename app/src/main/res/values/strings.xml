@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Listing App</string>
+    <string name="error_loading_data">Error loading data</string>
+    <string name="item_image_desc">Item Image</string>
+</resources>
