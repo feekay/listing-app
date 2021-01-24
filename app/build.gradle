@@ -26,10 +26,12 @@ android {
 
     buildTypes {
         debug {
+            buildConfigField "Boolean", "INSTRUMENTATION", "true"
             buildConfigField "String", "BASE_URL", "\"https://ey3f2y0nre.execute-api.us-east-1.amazonaws.com/\""
             minifyEnabled false
         }
         release {
+            buildConfigField "Boolean", "INSTRUMENTATION", "false"
             buildConfigField "String", "BASE_URL", "\"https://ey3f2y0nre.execute-api.us-east-1.amazonaws.com/\""
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
@@ -78,13 +80,24 @@ dependencies {
     implementation "com.squareup.moshi:moshi-kotlin:$moshi"
     implementation "com.squareup.moshi:moshi-adapters:$moshi"
     implementation "com.squareup.picasso:picasso:$picasso"
+    implementation "androidx.test.espresso:espresso-idling-resource:$espresso"
 
     testImplementation "junit:junit:$junit"
     testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$ktx_test"
     testImplementation "androidx.test:core:$test_core"
     testImplementation "org.mockito:mockito-core:$mockito"
     testImplementation "androidx.arch.core:core-testing:$arch_testing_core"
-    androidTestImplementation "androidx.test.ext:junit:$junit_ext"
-    androidTestImplementation "androidx.test.espresso:espresso-core:$espresso"
 
+    // For instrumentation tests
+    androidTestImplementation  "com.google.dagger:hilt-android-testing:$hilt_version"
+    androidTestAnnotationProcessor "com.google.dagger:hilt-android-compiler:$hilt_version"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$espresso"
+    androidTestImplementation "androidx.test.espresso:espresso-contrib:$espresso"
+    androidTestImplementation "androidx.test.ext:junit:$junit_ext"
+    androidTestImplementation "androidx.test:runner:$runner"
+    androidTestImplementation "androidx.test:rules:$runner"
+}
+
+kapt {
+    correctErrorTypes true
 }

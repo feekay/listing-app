@@ -15,7 +15,7 @@ class DefaultListingRepository @Inject constructor(private val service: ListingS
         try {
             emit(LoadSuccess(service.getListing()))
         } catch (e: Exception) {
-            emit(LoadFailure(e.message ?: ""))
+            emit(LoadFailure<ListingResponse>(e.message ?: ""))
         }
     }
 }

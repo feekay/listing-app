@@ -35,6 +35,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
+            android:id="@+id/errorTv"
             android:layout_width="match_parent"
             android:layout_height="@dimen/match_constraints"
             android:layout_marginTop="@dimen/unit_2x"
